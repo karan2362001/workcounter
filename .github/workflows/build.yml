@@ -10,16 +10,16 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use Ubuntu as the operating system for GitHub Actions
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  # Checkout the repository code
+        uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8  # Specify Python version
+          python-version: 3.12.4
 
       - name: Install dependencies
         run: |

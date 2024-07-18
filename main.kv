@@ -1,0 +1,88 @@
+<HoverButton@Button>:
+    background_color: 0.2, 0.6, 0.8, 1
+    font_size: '18sp'
+    color: 1, 1, 1, 1
+    on_enter: self.background_color = (0, 0.7, 1, 1); self.text = f'😃 {self.text.strip()}'
+    on_leave: self.background_color = (0.2, 0.6, 0.8, 1); self.text = self.text.strip()[1:].strip()
+
+<GradientBackground@BoxLayout>:
+    orientation: 'vertical'
+    padding: 10
+    spacing: 10
+    canvas.before:
+        Color:
+            rgba: 0.8, 0.2, 0.2, 1  # Start color (redish)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+        Color:
+            rgba: 0.1, 0.1, 0.5, 1  # End color (blueish)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+BoxLayout:
+    orientation: 'vertical'
+    padding: 10
+    spacing: 10
+
+    Label:
+        id: title_label
+        text: 'WorkCounter'
+        font_size: '24sp'
+        size_hint_y: None
+        height: '48dp'
+        color: 1, 1, 1, 1
+
+    Label:
+        id: check_in_label
+        text: 'Check-in Time: Not available'
+        halign: 'left'
+        color: 1, 1, 1, 1
+
+    Label:
+        id: check_out_label
+        text: 'Check-out Time: Not available'
+        halign: 'left'
+        color: 1, 1, 1, 1
+
+    Label:
+        id: timer_label
+        text: 'Time since clock-in: 0h 0m 0s'
+        halign: 'left'
+        color: 1, 1, 1, 1
+
+    ScrollView:
+        size_hint: (1, 0.5)
+        BoxLayout:
+            id: logs_container
+            orientation: 'vertical'
+            size_hint_y: None
+
+    HoverButton:
+        id: clock_in_button
+        text: 'Clock In ⏰'
+        size_hint_y: None
+        height: '48dp'
+        on_press: app.clock_in(self)
+
+    HoverButton:
+        id: clock_out_button
+        text: 'Clock Out ⌛'
+        size_hint_y: None
+        height: '48dp'
+        on_press: app.clock_out(self)
+
+    HoverButton:
+        id: calculate_exit_button
+        text: 'Calculate Exit Time 🕒'
+        size_hint_y: None
+        height: '48dp'
+        on_press: app.calculate_exit_time(self)
+
+    HoverButton:
+        id: exit_button
+        text: 'Exit 🚪'
+        size_hint_y: None
+        height: '48dp'
+        on_press: app.stop()

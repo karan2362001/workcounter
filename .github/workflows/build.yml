@@ -23,9 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install buildozer==1.2.0
-          buildozer --version  # Check Buildozer version
+          pip install buildozer
 
       - name: Build APK
         run: |
